@@ -279,6 +279,12 @@ spring:
     serialization:
       ORDER_MAP_ENTRIES_BY_KEYS: true
 
+logging:
+  level:
+    cloudfoundry-client: DEBUG
+    reactor:
+      core: DEBUG
+
 ---
 
 spring:
