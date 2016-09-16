@@ -25,6 +25,7 @@ swagger:
     - .*security.*
     - .*vpcs.*
     - .*credentials.*
+    - .*networks.*
     - .*subnets.*
     - .*ops.*
     - .*task.*
@@ -33,6 +34,7 @@ swagger:
     - .*azure.*
     - .*gce.*
     - .*kubernetes.*
+    - .*openstack.*
     - .*instances.*
     - .*reports.*
     - .*docker.*
@@ -127,7 +129,6 @@ google:
   - centos-cloud
   - coreos-cloud
   - debian-cloud
-  - google-containers
   - opensuse-cloud
   - rhel-cloud
   - suse-cloud
@@ -252,6 +253,21 @@ google:
       - type: pd-standard
         sizeGb: 10
 
+openstack:
+  enabled: ${OS_ENABLED:false}
+  accounts:
+    - name: test
+      environment: test
+      accountType: main
+      master: test
+      username: ${OS_USERNAME:'username'}
+      password: ${OS_PASSWORD:'password'}
+      tenantName: ${OS_TENANT_NAME:''}
+      domainName: Default
+      endpoint: ${OS_AUTH_URL:''}
+      regions: ${OS_REGIONS:''}
+      insecure: ${OS_INSECURE:false}
+
 kubernetes:
   enabled: false
 
@@ -271,6 +287,8 @@ cf:
       space: ${providers.cf.defaultSpace}
       username: ${cf.account.name}
       password: ${cf.account.password}
+      artifactUsername: ${cf.repo.username}
+      artifactPassword: ${cf.repo.password}
 
 spring:
   jackson:
@@ -278,12 +296,6 @@ spring:
       SORT_PROPERTIES_ALPHABETICALLY: true
     serialization:
       ORDER_MAP_ENTRIES_BY_KEYS: true
-
-logging:
-  level:
-    cloudfoundry-client: DEBUG
-    reactor:
-      core: DEBUG
 
 ---
 
