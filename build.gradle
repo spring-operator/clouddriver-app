@@ -1,8 +1,8 @@
 buildscript {
 	ext {
 		springBootVersion = '1.2.8.RELEASE'
-		clouddriverVersion = '1.331.0'
-		clouddriverAppVersion = '0.0.1.BUILD-SNAPSHOT'
+		clouddriverVersion = '1.388.0'
+		clouddriverAppVersion = '1.0.0.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
@@ -41,8 +41,6 @@ repositories {
 
 dependencies {
 	compile "com.netflix.spinnaker.clouddriver:clouddriver-web:${clouddriverVersion}"
-	compile('org.codehaus.groovy:groovy')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
 /**
