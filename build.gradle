@@ -15,6 +15,7 @@ buildscript {
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'spring-boot'
+apply plugin: 'maven-publish'
 
 jar {
 	baseName = 'clouddriver-app'
@@ -58,5 +59,56 @@ eclipse {
 	classpath {
 		containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
 		containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+	}
+}
+
+// make sure bootRepackage is included in task graph
+project.tasks.findAll { it.name.startsWith("publish") } .each { it.dependsOn assemble }
+
+/**
+ * To publish clouddriver-app to an artifactory repository, do this:
+ *
+ * USERNAME=<username> PASSWORD=<password> ./gradlew publish
+ */
+publishing {
+	repositories {
+		if ("${clouddriverAppVersion}".endsWith(".BUILD-SNAPSHOT")) {
+			println "Adding libs-snapshot-local repo as target for publishing maven artifacts..."
+			maven {
+				url "https://repo.spring.io/libs-snapshot-local"
+				credentials {
+					username System.getenv()['USERNAME']
+					password System.getenv()['PASSWORD']
+				}
+			}
+		} else if ("${clouddriverAppVersion}".endsWith(".RELEASE")) {
+			println "Adding libs-release-local repo as target for publishing maven artifacts..."
+			maven {
+				url "https://repo.spring.io/libs-release-local"
+				credentials {
+					username System.getenv()['USERNAME']
+					password System.getenv()['PASSWORD']
+				}
+			}
+		} else {
+			println "Adding libs-milestone-local repo as target for publishing maven artifacts..."
+			maven {
+				url "https://repo.spring.io/libs-milestone-local"
+				credentials {
+					username System.getenv()['USERNAME']
+					password System.getenv()['PASSWORD']
+				}
+			}
+		}
+	}
+
+	publications {
+		maven(MavenPublication) {
+			groupId 'org.springframework.cloud'
+			artifactId 'clouddriver-app'
+			version "${clouddriverAppVersion}"
+
+			artifact ("$buildDir/libs/${project.name}-${clouddriverAppVersion}.jar")
+		}
 	}
 }
