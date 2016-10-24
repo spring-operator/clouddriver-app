@@ -47,6 +47,14 @@ dependencies {
 configurations.all {
 	exclude group: 'javax.servlet', module: 'servlet-api'
 	exclude group: 'javax.ws.rs', module: 'jsr311-api'
+
+	resolutionStrategy {
+		eachDependency {
+			if (it.requested.group.startsWith('org.apache.tomcat')) {
+				it.useVersion '8.0.24'
+			}
+		}
+	}
 }
 
 eclipse {
