@@ -44,15 +44,9 @@ dependencies {
 	compile "com.netflix.spinnaker.clouddriver:clouddriver-web:${clouddriverVersion}"
 }
 
-/**
- * Let's pin everything to the version of Spring Boot selected at the top
- */
 configurations.all {
-	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-		if (details.requested.group == 'org.springframework.boot') {
-			details.useVersion springBootVersion
-		}
-	}
+	exclude group: 'javax.servlet', module: 'servlet-api'
+	exclude group: 'javax.ws.rs', module: 'jsr311-api'
 }
 
 eclipse {
