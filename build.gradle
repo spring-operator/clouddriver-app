@@ -1,7 +1,7 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.1.RELEASE'
-		clouddriverVersion = '1.391.0'
+		springBootVersion = '1.4.2.RELEASE'
+		clouddriverVersion = '1.439.0-SNAPSHOT'
 		clouddriverAppVersion = '1.0.0.BUILD-SNAPSHOT'
 	}
 	repositories {
@@ -37,11 +37,14 @@ repositories {
 	mavenCentral()
 	jcenter()
 	maven { url "http://spinnaker.bintray.com/gradle" }
+	maven { url "https://repo.spring.io/snapshot" }
+	maven { url "https://repo.spring.io/milestone" }
+	maven { url "https://repo.spring.io/release" }
 }
 
 
 dependencies {
-	compile "com.netflix.spinnaker.clouddriver:clouddriver-web:${clouddriverVersion}"
+	compile "org.springframework.spinnaker.clouddriver:clouddriver-web:${clouddriverVersion}"
 }
 
 configurations.all {
@@ -106,7 +109,7 @@ publishing {
 
 	publications {
 		maven(MavenPublication) {
-			groupId 'org.springframework.cloud'
+			groupId 'org.springframework.spinnaker'
 			artifactId 'clouddriver-app'
 			version "${clouddriverAppVersion}"
 
