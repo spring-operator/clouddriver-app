@@ -45,6 +45,7 @@ repositories {
 
 dependencies {
 	compile "org.springframework.spinnaker.clouddriver:clouddriver-web:${clouddriverVersion}"
+	compile "org.apache.tomcat:tomcat-util:8.0.24"
 }
 
 configurations.all {
