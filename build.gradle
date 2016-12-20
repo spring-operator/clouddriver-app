@@ -60,8 +60,18 @@ configurations.all {
 			if (it.requested.group == 'com.fasterxml' && it.requested.name == 'classmate') {
 				it.useVersion '1.2.0'
 			}
+			if (it.requested.group == 'org.cloudfoundry') {
+				it.useVersion '2.0.3.RELEASE'
+			}
+			if (it.requested.group == 'org.springframework.cloud' && it.requested.name == 'spring-cloud-deployer-cloudfoundry') {
+				it.useVersion '1.0.1.RELEASE'
+			}
+			if (it.requested.group == 'org.springframework.cloud' &&
+					(it.requested.name == 'spring-cloud-deployer-spi' || it.requested.name == 'spring-cloud-deployer-resource-maven')) {
+				it.useVersion '1.0.2.RELEASE'
+			}
 			if (it.requested.group == 'io.projectreactor' && it.requested.name == 'reactor-core') {
-				it.useVersion '3.0.2.RELEASE'
+				it.useVersion '3.0.3.RELEASE'
 			}
 		}
 	}
