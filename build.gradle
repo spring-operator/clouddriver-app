@@ -1,8 +1,8 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.2.RELEASE'
-		clouddriverVersion = '1.439.0-0.1.0.BUILD-SNAPSHOT'
-		clouddriverAppVersion = '1.0.0.BUILD-SNAPSHOT'
+		springBootVersion = '1.4.3.RELEASE'
+		clouddriverVersion = '1.439.0-0.2.0.BUILD-SNAPSHOT'
+		clouddriverAppVersion = '1.0.1.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
@@ -61,7 +61,7 @@ configurations.all {
 				it.useVersion '1.2.0'
 			}
 			if (it.requested.group == 'org.cloudfoundry') {
-				it.useVersion '2.0.3.RELEASE'
+				it.useVersion '2.0.4.RELEASE'
 			}
 			if (it.requested.group == 'org.springframework.cloud' && it.requested.name == 'spring-cloud-deployer-cloudfoundry') {
 				it.useVersion '1.0.1.RELEASE'
