@@ -1,8 +1,8 @@
 buildscript {
 	ext {
-		springBootVersion = '1.4.3.RELEASE'
-		clouddriverVersion = '1.439.0-0.2.0.BUILD-SNAPSHOT'
-		clouddriverAppVersion = '1.0.1.BUILD-SNAPSHOT'
+		springBootVersion = '1.4.4.RELEASE'
+		clouddriverVersion = '1.439.0-0.3.0.BUILD-SNAPSHOT'
+		clouddriverAppVersion = '1.0.2.BUILD-SNAPSHOT'
 	}
 	repositories {
 		mavenCentral()
